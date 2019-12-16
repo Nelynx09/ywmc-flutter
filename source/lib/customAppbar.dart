@@ -35,99 +35,106 @@ class _CustomAppbarState extends State<CustomAppbar>
     final width = MediaQuery.of(context).size.width;
     bool isSmall = width < 576;
     bool isMedium = width < 768;
-    return isSmall
-        ? Container(
-            color: cWhite,
-            width: width,
-            child: ExpansionTile(
-              backgroundColor: cWhite,
-              onExpansionChanged: (isExpanding) {
-                isExpanding
-                    ? _animationController.forward()
-                    : _animationController.reverse();
-              },
-              title: null,
-              trailing: AnimatedIcon(
-                color: cBlack,
-                progress: _animationController,
-                icon: AnimatedIcons.menu_close,
-              ),
-              leading: Container(height: 50, child: footerImg),
-              children: <Widget>[
-                Container(
-                  color: cWhite,
-                  child: ListTile(
-                      trailing: NavTopic(
-                    label: api.navItem1Label,
-                    href: api.navItem1href,
-                    textColor: cBlack,
-                    textColorOnHover: cBlack,
-                  )),
-                ),
-                Container(
-                  color: cWhite,
-                  child: ListTile(
-                      trailing: NavTopic(
-                    label: api.navItem2Label,
-                    href: api.navItem2href,
-                    textColor: cBlack,
-                    textColorOnHover: cBlack,
-                  )),
-                ),
-                Container(
-                  color: cWhite,
-                  child: ListTile(
-                      trailing: NavTopic(
-                    label: api.navItem3Label,
-                    href: api.navItem3href,
-                    textColor: cBlack,
-                    textColorOnHover: cBlack,
-                  )),
-                ),
-              ],
-            ),
-          )
-        : Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(horizontal: isMedium ? width * 0.05 : width*0.15),
-            width: width,
-            color: cWhite,
-            height: 50,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Expanded(
-                    child: NavTopicAnimated(
-                  navTopic: NavTopic(
-                    label: api.navItem1Label,
-                    href: api.navItem1href,
-                    textColor: cBlack,
-                    textColorOnHover: cBlue,
+    return FutureBuilder(
+      future: api.getApi(),
+      initialData: null,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return isSmall
+            ? Container(
+                color: cWhite,
+                width: width,
+                child: ExpansionTile(
+                  backgroundColor: cWhite,
+                  onExpansionChanged: (isExpanding) {
+                    isExpanding
+                        ? _animationController.forward()
+                        : _animationController.reverse();
+                  },
+                  title: null,
+                  trailing: AnimatedIcon(
+                    color: cBlack,
+                    progress: _animationController,
+                    icon: AnimatedIcons.menu_close,
                   ),
-                )),
-                Expanded(
-                  child: NavTopicAnimated(
-                      navTopic: NavTopic(
-                    label: api.navItem2Label,
-                    href: api.navItem2href,
-                    textColor: cBlack,
-                    textColorOnHover: cBlue,
-                  )),
+                  leading: Container(height: 50, child: footerImg),
+                  children: <Widget>[
+                    Container(
+                      color: cWhite,
+                      child: ListTile(
+                          trailing: NavTopic(
+                        label: api.navItem1Label,
+                        href: api.navItem1href,
+                        textColor: cBlack,
+                        textColorOnHover: cBlack,
+                      )),
+                    ),
+                    Container(
+                      color: cWhite,
+                      child: ListTile(
+                          trailing: NavTopic(
+                        label: api.navItem2Label,
+                        href: api.navItem2href,
+                        textColor: cBlack,
+                        textColorOnHover: cBlack,
+                      )),
+                    ),
+                    Container(
+                      color: cWhite,
+                      child: ListTile(
+                          trailing: NavTopic(
+                        label: api.navItem3Label,
+                        href: api.navItem3href,
+                        textColor: cBlack,
+                        textColorOnHover: cBlack,
+                      )),
+                    ),
+                  ],
                 ),
-                Expanded(
-                  child: NavTopicAnimated(
+              )
+            : Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.symmetric(
+                    horizontal: isMedium ? width * 0.05 : width * 0.15),
+                width: width,
+                color: cWhite,
+                height: 50,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Expanded(
+                        child: NavTopicAnimated(
                       navTopic: NavTopic(
-                    label: api.navItem3Label,
-                    href: api.navItem3href,
-                    textColor: cBlack,
-                    textColorOnHover: cBlue,
-                  )),
+                        label: api.navItem1Label,
+                        href: api.navItem1href,
+                        textColor: cBlack,
+                        textColorOnHover: cBlue,
+                      ),
+                    )),
+                    Expanded(
+                      child: NavTopicAnimated(
+                          navTopic: NavTopic(
+                        label: api.navItem2Label,
+                        href: api.navItem2href,
+                        textColor: cBlack,
+                        textColorOnHover: cBlue,
+                      )),
+                    ),
+                    Expanded(
+                      child: NavTopicAnimated(
+                          navTopic: NavTopic(
+                        label: api.navItem3Label,
+                        href: api.navItem3href,
+                        textColor: cBlack,
+                        textColorOnHover: cBlue,
+                      )),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
+              );
+      },
+    );
   }
 }
 
