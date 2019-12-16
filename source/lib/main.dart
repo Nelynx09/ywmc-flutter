@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
-                          'o ลงทะเบียน เฟส 2 \n ตัวแต่วันที่ 24 ต.ค.62 วันละ 2 รอบ เวลา 6.00 และ 18.00 น. \n(จำกัดจำนวนผู้ลงทะเบียนรอบละ 5 แสนคน รวม 1 ล้านคนต่อวัน)',
+                          'ลงทะเบียน เฟส 2 \n ตัวแต่วันที่ 24 ต.ค.62 วันละ 2 รอบ เวลา 6.00 และ 18.00 น. \n(จำกัดจำนวนผู้ลงทะเบียนรอบละ 5 แสนคน รวม 1 ล้านคนต่อวัน)',
                           style: cTATSanaChonBoldTextStyle(
                               cWhite, isSmall ? 18 : 24.0),
                           textAlign: TextAlign.center,
